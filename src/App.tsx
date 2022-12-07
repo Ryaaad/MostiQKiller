@@ -45,7 +45,6 @@ function App() {
   
   }
   setInterval(() => {
-
     for(let i=0;i<5;i++){
       if(Animal[i].State!=0){
       Animal[i].cor.Top=Math.floor(Math.random() * (70 + 1) )
@@ -53,11 +52,14 @@ function App() {
     }
   }, 1900);
   return (
-  <div  className="h-[100vh] w-full flex gap-2 "
-   onClick={(e)=>{
+  <div  className="h-[100vh] relative w-full flex gap-2 " 
+  onClick={(e)=>{
  const x= document.getElementById("backgroundMusic") as  HTMLVideoElement | null;
  if(x){ x.play();}
   }}>
+    <div className="absolute">
+      
+    </div>
     <audio id='backgroundMusic' >
     <source src={Sound} type="audio/ogg"></source>
     </audio>
