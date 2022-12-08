@@ -1,10 +1,12 @@
 import Fck from './assets/Fucker.png'
 import Sound from './assets/mosquito.ogg'
 import Dead from './assets/dead.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 function App() {
   const [Alive, setAlive] = useState(5)
   const [dead, setdead] = useState(0)
+  const [Menu, setMenu] = useState(true)
   const [Animal, setAnimal] = useState([
     {
     id:0,
@@ -39,46 +41,68 @@ function App() {
 ] )
 
   const clickHandler=(e:React.MouseEvent<HTMLImageElement, MouseEvent>,id:number)=>{
-   Animal[id].src=Dead
-   setAlive(prev=>prev=prev-1)
-   setdead(prev=>prev=prev+1)
-  
-  }
-  setInterval(() => {
-    for(let i=0;i<5;i++){
-      if(Animal[i].State!=0){
-      Animal[i].cor.Top=Math.floor(Math.random() * (70 + 1) )
-      Animal[i].cor.right=Math.floor(Math.random() * (70 + 1) )}
+    console.log(id);
+    if(Animal[id].State==1){
+      Animal[id].src=Dead
+      Animal[id].State=0
+      setAlive(prev=>prev=prev-1)
+      setdead(prev=>prev=prev+1)   
     }
-  }, 1900);
+    let x=0;
+    for(let i=0;i<5;i++){
+      if(Animal[i].State==0) x++;
+  }
+if(x==5) setMenu(true)
+}
+  useEffect(() => {
+    if(!Menu)
+    setInterval(() => {
+      for(let i=0;i<5;i++){
+        if(Animal[i].State!=0){
+          Animal[i].cor.Top=Math.floor(Math.random() * (75) )
+          Animal[i].cor.right=Math.floor(Math.random() * (70 + 1) )}  
+          setAnimal(prev=>prev={...Animal})
+      }
+    }, 900);
+  }, [Menu])
+  
+ 
   return (
-  <div  className="h-[100vh] relative w-full flex gap-2 " 
+    <>
+  { Menu && <div className='h-[100vh] relative  bg-[#9c8e8e38] w-full ' 
+  onClick={()=>{setMenu(prev=>prev=false);}}>
+    <motion.div className='rounded-md w-[450px] bg-black fixed right-[35%] h-[300px]  ' 
+  
+    initial={{y:-10,  opacity: 0.5,}} animate={{ y: 150,  opacity: 1 }}  transition={{  type: "spring", bounce: .5,duration:1.5 }} >
+    
+     </motion.div>
+  </div>
+}
+{ !Menu && <div  className="h-[100vh] relative w-full flex gap-2 " 
   onClick={(e)=>{
  const x= document.getElementById("backgroundMusic") as  HTMLVideoElement | null;
  if(x){ x.play();}
   }}>
-    <div className="absolute">
-      
-    </div>
+ 
     <audio id='backgroundMusic' >
     <source src={Sound} type="audio/ogg"></source>
     </audio>
   <div className="h-full w-[60%] relative " >
 
   <img  src={Animal[0].src} style={{'top':`${Animal[0].cor.Top}%`,'right':`${Animal[0].cor.right}%`}}
-   onClick={(e)=>{     Animal[0].State=0;clickHandler(e,0) }}
+   onClick={(e)=>{clickHandler(e,0) }}
       className={` absolute cursor-pointer `}/>
   <img src={Animal[1].src}  style={{'top':`${Animal[1].cor.Top}%`,'right':`${Animal[1].cor.right}%`}}
-  onClick={(e)=>{   Animal[1].State=0;clickHandler(e,1)}}
+  onClick={(e)=>{clickHandler(e,1)}}
       className={`absolute cursor-pointer `}/>
   <img src={Animal[2].src}  style={{'top':`${Animal[2].cor.Top}%`,'right':`${Animal[2].cor.right}%`}}
-  onClick={(e)=>{  Animal[2].State=0;clickHandler(e,2)}}
+  onClick={(e)=>{clickHandler(e,2)}}
         className={` absolute cursor-pointer `}/>
   <img src={Animal[3].src}  style={{'top':`${Animal[3].cor.Top}%`,'right':`${Animal[3].cor.right}%`}}
-  onClick={(e)=>{  Animal[3].State=0;clickHandler(e,3)}}
+  onClick={(e)=>{clickHandler(e,3)}}
       className={` absolute cursor-pointer `}/>
   <img  src={Animal[4].src}  style={{'top':`${Animal[4].cor.Top}%`,'right':`${Animal[4].cor.right}%`}}
-  onClick={(e)=>{  Animal[4].State=0;clickHandler(e,4)}}
+  onClick={(e)=>{ clickHandler(e,4)}}
         className={` absolute cursor-pointer `}/>                
 
   </div>
@@ -117,7 +141,9 @@ function App() {
        
   </div>
  
-  </div>
+  </div>}
+    </>
+  
   )
 }
 
