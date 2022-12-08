@@ -1,6 +1,7 @@
 import Fck from './assets/Fucker.png'
 import Sound from './assets/mosquito.ogg'
 import Dead from './assets/dead.png'
+import MosBg from './assets/MosBG.jpg'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 function App() {
@@ -69,12 +70,16 @@ if(x==5) setMenu(true)
  
   return (
     <>
-  { Menu && <div className='h-[100vh] relative  bg-[#9c8e8e38] w-full ' 
+  { Menu && <div style={{backgroundImage:`url(${MosBg})`}} className='h-[100vh] absolute w-full ' 
   onClick={()=>{setMenu(prev=>prev=false);}}>
-    <motion.div className='rounded-md w-[450px] bg-black fixed right-[35%] h-[300px]  ' 
-  
-    initial={{y:-10,  opacity: 0.5,}} animate={{ y: 150,  opacity: 1 }}  transition={{  type: "spring", bounce: .5,duration:1.5 }} >
-    
+    <motion.div className='rounded-md w-[700px] bg-[#59505056] grid items-center  fixed right-[25%] h-[450px]  ' 
+    initial={{y:-10,  opacity: 0.5,}} animate={{ y: 90,  opacity: 1 }}  
+    transition={{  type: "spring", bounce: .5,duration:1.5 }} >
+    <ul className="grid text-center justify-center gap-5 items-center text-2xl font-bold p-10 py-7 w-full ">
+      <li className='p-7 py-4 bg-white cursor-pointer '  >MAIN</li>
+      <li className='p-7 py-4 bg-white cursor-pointer' >DIFFICULTIES</li>
+      <li className='p-7 py-4 bg-white cursor-pointer' >OPTIONS</li>
+    </ul>
      </motion.div>
   </div>
 }
@@ -132,9 +137,6 @@ if(x==5) setMenu(true)
               </a>
               <a href="https://youtu.be/mKRZIHwTr-I" target="_blank">
                 Learn more
-              </a>
-              <a href="https://youtu.be/iik25wqIuFo" target="_blank">
-                Report
               </a>
             </div>
           </div>
