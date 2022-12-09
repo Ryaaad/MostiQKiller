@@ -76,9 +76,9 @@ if(x==5) setMenu(true)
     initial={{y:-10,  opacity: 0.5,}} animate={{ y: 90,  opacity: 1 }}  
     transition={{  type: "spring", bounce: .5,duration:1.5 }} >
     <ul className="grid text-center justify-center gap-5 items-center text-2xl font-bold p-10 py-7 w-full ">
-      <li className='p-7 py-4 bg-white cursor-pointer '  >MAIN</li>
-      <li className='p-7 py-4 bg-white cursor-pointer' >DIFFICULTIES</li>
-      <li className='p-7 py-4 bg-white cursor-pointer' >OPTIONS</li>
+      <li className='p-7 py-4 bg-white cursor-pointer ' onClick={()=>{}}  >MAIN</li>
+      <li className='p-7 py-4 bg-white cursor-pointer' onClick={()=>{}}  >DIFFICULTIES</li>
+      <li className='p-7 py-4 bg-white cursor-pointer' onClick={()=>{}}  >OPTIONS</li>
     </ul>
      </motion.div>
   </div>
