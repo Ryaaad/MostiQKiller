@@ -64,7 +64,7 @@ if(x==5) setMenu(true)
           Animal[i].cor.right=Math.floor(Math.random() * (70 + 1) )}  
           setAnimal(prev=>prev={...Animal})
       }
-    }, 900);
+    }, 600);
   }, [Menu])
   
  
