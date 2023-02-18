@@ -1,6 +1,5 @@
 # MostiQKiller
-It's a game in which the goal is to kill all five mosquitos. killing them is as irritating and difficult as in Real Life.
-
+It's a game in which the goal is to kill all five mosquitos. killing them is as irritating and difficult as in Real Life. built with React
 # screenshots
 ![de8c256f-9db5-4787-8ac7-d931a0831f39](https://user-images.githubusercontent.com/87044522/206934987-00c6ae3f-8973-4572-92ae-b7858dc33d14.png)
 
